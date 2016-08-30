@@ -55,5 +55,10 @@ blogSchema.statics = {
     }
 }
 
+var SequeSchema = mongoose.Schema({
+    _id: String,
+    sequence_value: Number
+});
 
 module.exports = blogSchema;
+// module.exports = SequeSchema;

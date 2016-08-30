@@ -11,6 +11,7 @@ var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 var Blog = require('./models/content.js')
+var Sequece = require('./models/content.js')
 	// var Content = mongoose.model('Content', {
 	// 	name: String,
 	// 	title: String,
@@ -18,34 +19,40 @@ var Blog = require('./models/content.js')
 	// });
 
 var newcnt = new Blog({
-	_id: getNextSequenceValue('productid')
-	title: "文章三",
+	// _id: getNextSequenceValue('productid'),
+	title: "文章一",
 	author: "daisy",
 	body: "文章内容",
 	// date: Date(),
 	hidden: false
 });
-// newcnt.save(function(err) {
+// console.log(newcnt);
+// var newse = new Sequece({
+// 	_id: "productid",
+// 	sequence_value: 2
+// });
+
+// newse.save(function(err) {
 // 	if (err) {
 // 		console.log(err);
 // 	} else {
 // 		console.log('数据插入成功');
 // 	}
 // });
-function getNextSequenceValue(sequenceName) {
-	var sequenceDocument = db.counters.findAndModify({
-		query: {
-			_id: sequenceName
-		},
-		update: {
-			$inc: {
-				sequence_value: 1
-			}
-		},
-		new: true
-	});
-	return sequenceDocument.sequence_value;
-}
+
+
+// function getNextSequenceValue(sequenceName) {
+// 	var query = {
+// 		_id: sequenceName
+// 	};
+// 	Sequece.findOneAndUpdate(query, {
+// 		$inc: {
+// 			sequence_value: 1
+// 		}
+// 	}, function(cb) {
+// 		console.log(cb);
+// 	})
+// }
 
 Blog.fetchAll(function(err, blog) {
 	console.log("fetch");
@@ -64,17 +71,8 @@ Blog.findByAuthor('daisy', function(err, blog) {
 // 		console.log("updateById");
 // 		console.log(cb);
 // 	})
-var o = {};
-o.map = function() {
-	emit(this.name, 1)
-}
-o.reduce = function(k, vals) {
-	return vals.length
-}
-User.mapReduce(o, function(err, results) {
-		console.log(results)
-	})
-	/*设置引擎*/
+
+/*设置引擎*/
 app.set("view engine", 'ejs');
 app.use(express.static(__dirname + "/static"))
 app.use(bodyParser())
