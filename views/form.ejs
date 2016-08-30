@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%=tittle%></title>
+    <link rel="stylesheet" type="text/css" href="/css/form.css">
+  </head>
+  <body>
+    <form action="/form/new" method="post">
+      <label>发表新文章</label>
+      <textarea name="text" rows="5" cols="100"></textarea>
+      <input type="text" name="tittle" value="">
+      <input type="text" name="name" value="">
+      <input type="text" name="id" value=""> //如果新添加的，id肯定是undefined
+      <input type="submit" value="发表">
+    </form>
+    <div class="">
+      <%=message%>
+    </div>
+  </body>
+</html>
